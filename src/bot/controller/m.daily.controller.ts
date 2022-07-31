@@ -5,35 +5,48 @@ import { MemberService } from '../utils/member.service';
 import { MessageFilter } from '../guards/message.filter';
 import { EmbedFactory } from '../utils/embed.factory';
 import { DailyChannel } from '../guards/daily.channel';
+import { MDailyChannel } from '../guards/m.daily.channel';
+import moment from 'moment';
 
 @Controller()
-export class DailySignInController {
+export class MDailySignInController {
 
   constructor(private readonly memberService: MemberService,
               private readonly embedFactory: EmbedFactory,
   ) {
+
   }
 
   @On({
     event: 'message',
   })
-  @UseGuards(MessageFilter, DailyChannel)
+  @UseGuards(MessageFilter, MDailyChannel)
   async onMessage(msg: Message) {
-    if (msg.content == '签到') {
-      if (await this.memberService.signIn(msg.member.id)) {
-        let embed = await this.embedFactory.getSignInCard(msg.member);
-        await msg.reply(embed);
-        await msg.delete();
-      } else {
-        msg.reply('您已经签到过了').then(async m => {
+    let now = moment(moment());
+    if (now.isBetween(moment('6:00', 'HH:mm'), moment('8:00', 'HH:mm'))) {
+      if (msg.content == '打卡') {
+        if (await this.memberService.m_signIn(msg.member.id)) {
+          let embed = await this.embedFactory.getMSignInCard(msg.member);
+          await msg.reply(embed);
           await msg.delete();
-          await m.delete({
-            timeout: 5000,
+        } else {
+          msg.reply('您已经签到过了').then(async m => {
+            await msg.delete();
+            await m.delete({
+              timeout: 5000,
+            });
           });
-        });
+        }
+      } else {
+        await msg.delete();
       }
     } else {
-      await msg.delete();
+      msg.reply('不在打卡时间内').then(async m => {
+        await msg.delete();
+        await m.delete({
+          timeout: 5000,
+        });
+      });
     }
   }
 }
