@@ -24,15 +24,15 @@ export class GlobalController {
   async onVoiceStateUpdate(oldState: VoiceState, newState: VoiceState) {
     const member = newState.member;
     if (!member.user.bot) {
-      const newChannelID = newState.channelID;
-      const oldChannelID = oldState.channelID;
+      const newChannelID = newState.channelId;
+      const oldChannelID = oldState.channelId;
       let online = this.memberService.online.has(member.id);
       let isLeave = true;
       let ignored = true;
       if (newChannelID != oldChannelID) {
         ignored = false;
         if (newChannelID != null) {
-          const parentID = newState.channel.parentID;
+          const parentID = newState.channel.parentId;
           const isXiuXianCategory = (BotConfig.Category.Study == parentID);
           if (isXiuXianCategory) {
             if (!online) {
