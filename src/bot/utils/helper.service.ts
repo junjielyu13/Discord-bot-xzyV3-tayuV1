@@ -4,7 +4,7 @@ import { Client } from 'discord-nestjs-xzyv';
 import { InjectModel } from '@nestjs/mongoose';
 import { Quotation, QuotationDocument } from '../../database/schemas/quotation.schema';
 import { FilterQuery, Model } from 'mongoose';
-import { remove, sample } from 'lodash';
+import { forEach, remove, sample } from 'lodash';
 import moment from 'moment';
 import { BotClient } from '../../interfaces/bot.client';
 
@@ -21,8 +21,8 @@ export class HelperService {
 
   async getChannelWithCategoryId(id: string): Promise<IterableIterator<Channel>> {
     return await this.getChannel(c => {
-      if (c.type == 'voice') {
-        return (c as VoiceChannel).parentID == id;
+      if (c.type == 2 ) {  // 2 = GUILD_VOICE: a voice channel 
+        return (c as VoiceChannel).parentId == id;
       }
       return false;
     });
@@ -39,7 +39,7 @@ export class HelperService {
 
   async getChannelByNameWithType(name: string, type: string): Promise<Channel | null> {
     let channel = await this.getChannelByName(name);
-    if (!channel || channel.type != type) {
+    if (!channel) {
       return null;
     }
     return channel;
@@ -47,7 +47,7 @@ export class HelperService {
 
   async getChannelByIdWithType(id: string, type: string): Promise<Channel | null> {
     let channel = await this.getChannelById(id);
-    if (!channel || channel.type != type) {
+    if (!channel) {
       return null;
     }
     return channel;
@@ -93,7 +93,7 @@ export class HelperService {
   }
 
   async getRoleByName(name: string): Promise<Role> {
-    return (await this.client.defaultGuild.roles.fetch()).cache.find(r => r.name == name);
+    return (await this.client.defaultGuild.roles.fetch()).find(r => r.name == name);
   }
 
   async getRoleById(id: string) {
@@ -129,8 +129,15 @@ export class HelperService {
   }
 
   async getChannelOnlineMember(channel: Channel): Promise<GuildMember[]> {
-    if (channel != null && channel.type == 'voice' && (channel as VoiceChannel).members.size > 0) {
-      return (channel as VoiceChannel).members.array();
+    if (channel != null && (channel as VoiceChannel).members.size > 0) {
+      //return (channel as VoiceChannel).members;
+      let GuildMembers = (channel as VoiceChannel).members;
+
+      let GuildMembersArray = new Array<GuildMember>();
+      GuildMembers.forEach(function (guild) {
+        GuildMembersArray.push(guild);
+      })
+      return GuildMembersArray;
     }
     return [];
   }
@@ -144,20 +151,20 @@ export class HelperService {
     return result;
   }
 
-  async kickAllMemberFromChannel(channel: VoiceChannel) {
-    if (channel != null && channel.members.size > 0) {
-      for (let member of channel.members.values()) {
-        await member.voice.kick();
-      }
-    }
-  }
+  // async kickAllMemberFromChannel(channel: VoiceChannel) {
+  //   if (channel != null && channel.members.size > 0) {
+  //     for (let member of channel.members.values()) {
+  //       await member.voice.kick();
+  //     }
+  //   }
+  // }
 
-  async kickAllMemberFromCategoryChannel(category: string) {
-    let onlineMembers = await this.getCategoryOnlineMember(category);
-    for (let member of onlineMembers) {
-      await member.voice.kick();
-    }
-  }
+  // async kickAllMemberFromCategoryChannel(category: string) {
+  //   let onlineMembers = await this.getCategoryOnlineMember(category);
+  //   for (let member of onlineMembers) {
+  //     await member.voice.kick();
+  //   }
+  // }
 
 
   @Client() private client: BotClient;
@@ -213,4 +220,5 @@ export class HelperService {
   getEmoji(name: string) {
     return this.client.defaultGuild.emojis.cache.find(e => e.name == name);
   }
+
 }

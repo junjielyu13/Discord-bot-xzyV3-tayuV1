@@ -1,5 +1,5 @@
 import { Client, DiscordGuard } from 'discord-nestjs-xzyv';
-import { ClientEvents, Message, MessageEmbed } from 'discord.js';
+import { ClientEvents, Message, EmbedBuilder  } from 'discord.js'; //EmbedBuilder
 import { BotClient } from '../../interfaces/bot.client';
 import { BotConfig } from '../bot.config';
 
@@ -12,7 +12,9 @@ export class MessageFilter implements DiscordGuard {
   botClient: BotClient;
 
   canActive(event: keyof ClientEvents, context: any): boolean {
-    if (event == 'message') {
+
+    // event: 'Message',
+    if (event == 'messageCreate') {
       let msg = context[0] as Message;
       if (msg.guild) {
         if (!cache.has(msg.id)) {
@@ -44,17 +46,12 @@ export class MessageFilter implements DiscordGuard {
 }
 
 function sendNoPassSensitiveMessage(msg: Message, filteredMessage) {
-  msg.delete({
-    reason: '敏感言论',
-  }).then(async () => {
+  msg.delete().then(async () => {
     let username = msg.member.displayName;
     let userAvatar = msg.member.user.avatarURL();
-    let message = new MessageEmbed();
-    message.setAuthor(username, userAvatar);
-    message.setDescription('> ' + filteredMessage);
-    message.setColor('#e53935');
-    await msg.reply('**请您注意文明! 消息以撤回过滤处理!**', {
-      embed: message,
-    });
+    // let message = new EmbedBuilder();
+    // EmbedBuilder.from();
+    // message.setColor('#e53935');
+    await msg.reply('**请您注意文明! 消息以撤回过滤处理!**');
   });
 }

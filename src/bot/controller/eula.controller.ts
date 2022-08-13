@@ -16,7 +16,8 @@ export class EulaController {
   }
 
   @On({
-    event: 'message',
+    // event: 'Message',
+    event: 'messageCreate'
   })
   @UseGuards(MessageFilter, EulaChannel)
   async onMessage(msg: Message) {

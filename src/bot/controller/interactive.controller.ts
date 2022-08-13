@@ -12,13 +12,14 @@ export class InteractiveController {
   }
 
   @On({
-    event: 'message',
+    // event: 'Message',
+    event: 'messageCreate'
   })
   @UseGuards(MessageFilter, InteractiveChannel)
   async onMessage(msg: Message) {
     if (msg.content == '修行') {
-      let embed = await this.embedFactory.getXiuXianCard(msg.member);
-      await msg.reply(embed);
+      // let embed = await this.embedFactory.getXiuXianCard(msg.member);
+      // await msg.reply(embed);
     }
   }
 }

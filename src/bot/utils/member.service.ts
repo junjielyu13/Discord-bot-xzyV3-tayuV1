@@ -56,7 +56,7 @@ export class MemberService {
         let online = false;
         if (guildMember.voice.channel != null) {
           let channel = await guildMember.voice.channel.fetch() as VoiceChannel;
-          online = channel.parentID == BotConfig.Category.Study;
+          online = channel.parentId == BotConfig.Category.Study;
         }
         if (online) {
           this.online.set(guildMember.id);

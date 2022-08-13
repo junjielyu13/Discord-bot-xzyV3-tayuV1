@@ -6,7 +6,9 @@ export class DailyChannel implements DiscordGuard {
 
   canActive(event: keyof ClientEvents, context: any): boolean | Promise<boolean> {
     let pass = false;
-    if (event == 'message') {
+    
+    // event: 'Message',
+    if (event == 'messageCreate')  {
       pass = (context[0] as Message).channel.id == BotConfig.Channel.Daily;
     }
     return pass;

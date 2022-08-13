@@ -18,7 +18,8 @@ export class MDailySignInController {
   }
 
   @On({
-    event: 'message',
+    // event: 'Message',
+    event: 'messageCreate'
   })
   @UseGuards(MessageFilter, MDailyChannel)
   async onMessage(msg: Message) {
@@ -32,9 +33,7 @@ export class MDailySignInController {
         } else {
           msg.reply('您已经签到过了').then(async m => {
             await msg.delete();
-            await m.delete({
-              timeout: 5000,
-            });
+            await m.delete();
           });
         }
       } else {
@@ -43,9 +42,7 @@ export class MDailySignInController {
     } else {
       msg.reply('不在打卡时间内').then(async m => {
         await msg.delete();
-        await m.delete({
-          timeout: 5000,
-        });
+        await m.delete();
       });
     }
   }

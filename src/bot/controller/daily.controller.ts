@@ -15,7 +15,8 @@ export class DailySignInController {
   }
 
   @On({
-    event: 'message',
+    // event: 'Message',
+    event: 'messageCreate'
   })
   @UseGuards(MessageFilter, DailyChannel)
   async onMessage(msg: Message) {
@@ -27,9 +28,7 @@ export class DailySignInController {
       } else {
         msg.reply('您已经签到过了').then(async m => {
           await msg.delete();
-          await m.delete({
-            timeout: 5000,
-          });
+          await m.delete();
         });
       }
     } else {

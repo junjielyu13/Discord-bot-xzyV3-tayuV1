@@ -23,6 +23,7 @@ import { MDailySignInController } from './controller/m.daily.controller';
 
   imports: [
     DiscordModule.forRootAsync({
+        //TODO
         useFactory() {
           return {
             token: process.env.token!,

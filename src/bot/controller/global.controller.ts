@@ -58,7 +58,8 @@ export class GlobalController {
   }
 
   @On({
-    event: 'message',
+    // event: 'Message',
+    event: 'messageCreate'
   })
   @UseGuards(MessageFilter)
   async onMessage(msg: Message) {
@@ -71,7 +72,7 @@ export class GlobalController {
   @Cron('0 0 0 * * *')
   async displayRanking() {
     const rankChannel = await this.helperService.getTextChannelById(BotConfig.Channel.Rank);
-    const embed = await this.embedFactory.getRankingCard();
-    await rankChannel.send(embed);
+    // const embed = await this.embedFactory.getRankingCard();
+    // await rankChannel.send(embed);
   }
 }

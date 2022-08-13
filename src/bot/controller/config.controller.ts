@@ -23,7 +23,8 @@ export class ConfigController {
   }
 
   @On({
-    event: 'message',
+    // event: 'Message',
+    event: 'messageCreate'
   })
   @UseGuards(MessageFilter, ConfigChannel)
   async onMessage(msg: Message) {
@@ -40,9 +41,11 @@ export class ConfigController {
       }
       shouldDelete = true;
     } while (false);
+
     if (shouldDelete) {
       await msg.delete();
     }
+
   }
 
   @On({
@@ -102,9 +105,7 @@ export class ConfigController {
         return true;
       } else {
         msg.reply('内容不能为空哦').then(r => {
-          r.delete({
-            timeout: 5000,
-          });
+          r.delete();
         });
       }
     }
