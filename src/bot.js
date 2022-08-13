@@ -13,7 +13,7 @@ logger.level = 'debug';
 
 // 初始化 Discord Bot
 var bot = new Discord.Client({
-    token: auth.token,
+    // token: auth.token,
     autorun: true
 });
 

@@ -5,6 +5,7 @@
 .env-tayu 
 auth.json 
 src/auth.json 
+src/bot.js
 
 # compiled output
 /dist

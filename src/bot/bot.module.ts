@@ -20,6 +20,7 @@ import { EulaController } from './controller/eula.controller';
 import { MDailySignInController } from './controller/m.daily.controller';
 
 @Module({
+
   imports: [
     DiscordModule.forRootAsync({
         useFactory() {
@@ -29,13 +30,16 @@ import { MDailySignInController } from './controller/m.daily.controller';
         },
       },
     ),
+
     DbModule,
     MongooseModule.forFeature([
       { name: 'VerbalConfig', schema: VerbalConfigSchema },
       { name: 'Member', schema: MemberSchema },
       { name: 'Quotation', schema: QuotationSchema },
     ]),
+
   ],
+
   controllers: [
     EulaController,
     GlobalController,
@@ -44,6 +48,8 @@ import { MDailySignInController } from './controller/m.daily.controller';
     ConfigController,
     MDailySignInController,
   ],
+
+
   providers: [
     MainService,
     HelperService,
@@ -53,5 +59,8 @@ import { MDailySignInController } from './controller/m.daily.controller';
     EmbedFactory,
   ],
 })
+
+
 export class BotModule {
+
 }
