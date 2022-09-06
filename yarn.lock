@@ -1685,10 +1685,10 @@
   dependencies:
     "node-int64" "^0.4.0"
 
-"bson@^4.6.5":
-  "integrity" "sha512-uqrgcjyOaZsHfz7ea8zLRCLe1u+QGUSzMZmvXqO24CDW7DWoW1qiN9folSwa7hSneTSgM2ykDIzF5kcQQ8cwNw=="
-  "resolved" "https://registry.npmmirror.com/bson/-/bson-4.6.5.tgz"
-  "version" "4.6.5"
+"bson@^4.6.5", "bson@^4.7.0":
+  "integrity" "sha512-VrlEE4vuiO1WTpfof4VmaVolCVYkYTgB9iWgYNOrVlnifpME/06fhFRmONgBhClD5pFC1t9ZWqFUQEQAzY43bA=="
+  "resolved" "https://registry.npmmirror.com/bson/-/bson-4.7.0.tgz"
+  "version" "4.7.0"
   dependencies:
     "buffer" "^5.6.0"
 
@@ -2147,7 +2147,7 @@
   "resolved" "https://registry.npmmirror.com/delayed-stream/-/delayed-stream-1.0.0.tgz"
   "version" "1.0.0"
 
-"denque@^2.0.1":
+"denque@^2.0.1", "denque@^2.1.0":
   "integrity" "sha512-HVQE3AAb/pxF8fQAoiqpvg9i3evqug3hoiwakOyZAwJm+6vZehbkYXZ0l4JxS+I3QxM97v5aaRNhj8v5oBhekw=="
   "resolved" "https://registry.npmmirror.com/denque/-/denque-2.1.0.tgz"
   "version" "2.1.0"
@@ -4135,13 +4135,25 @@
   "resolved" "https://registry.npmmirror.com/moment/-/moment-2.29.4.tgz"
   "version" "2.29.4"
 
-"mongodb-connection-string-url@^2.5.2":
+"mongodb-connection-string-url@^2.5.2", "mongodb-connection-string-url@^2.5.3":
   "integrity" "sha512-f+/WsED+xF4B74l3k9V/XkTVj5/fxFH2o5ToKXd8Iyi5UhM+sO9u0Ape17Mvl/GkZaFtM0HQnzAG5OTmhKw+tQ=="
   "resolved" "https://registry.npmmirror.com/mongodb-connection-string-url/-/mongodb-connection-string-url-2.5.3.tgz"
   "version" "2.5.3"
   dependencies:
     "@types/whatwg-url" "^8.2.1"
     "whatwg-url" "^11.0.0"
+
+"mongodb@^4.9.1":
+  "integrity" "sha512-ZhgI/qBf84fD7sI4waZBoLBNJYPQN5IOC++SBCiPiyhzpNKOxN/fi0tBHvH2dEC42HXtNEbFB0zmNz4+oVtorQ=="
+  "resolved" "https://registry.npmmirror.com/mongodb/-/mongodb-4.9.1.tgz"
+  "version" "4.9.1"
+  dependencies:
+    "bson" "^4.7.0"
+    "denque" "^2.1.0"
+    "mongodb-connection-string-url" "^2.5.3"
+    "socks" "^2.7.0"
+  optionalDependencies:
+    "saslprep" "^1.0.3"
 
 "mongodb@4.8.1":
   "integrity" "sha512-/NyiM3Ox9AwP5zrfT9TXjRKDJbXlLaUDQ9Rg//2lbg8D2A8GXV0VidYYnA/gfdK6uwbnL4FnAflH7FbGw3TS7w=="
@@ -5036,7 +5048,7 @@
   "resolved" "https://registry.npmmirror.com/smart-buffer/-/smart-buffer-4.2.0.tgz"
   "version" "4.2.0"
 
-"socks@^2.6.2":
+"socks@^2.6.2", "socks@^2.7.0":
   "integrity" "sha512-scnOe9y4VuiNUULJN72GrM26BNOjVsfPXI+j+98PkyEfsIXroa5ofyjT+FzGvn/xHs73U2JtoBYAVx9Hl4quSA=="
   "resolved" "https://registry.npmmirror.com/socks/-/socks-2.7.0.tgz"
   "version" "2.7.0"
