@@ -2084,6 +2084,11 @@
   "resolved" "https://registry.npmmirror.com/csstype/-/csstype-3.1.0.tgz"
   "version" "3.1.0"
 
+"date-format@^4.0.13":
+  "integrity" "sha512-bnYCwf8Emc3pTD8pXnre+wfnjGtfi5ncMDKy7+cWZXbmRAsdWkOQHrfC1yz/KiwP5thDp2kCHWYWKBX4HP1hoQ=="
+  "resolved" "https://registry.npmmirror.com/date-format/-/date-format-4.0.13.tgz"
+  "version" "4.0.13"
+
 "debug@^2.6.9":
   "integrity" "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA=="
   "resolved" "https://registry.npmmirror.com/debug/-/debug-2.6.9.tgz"
@@ -2851,7 +2856,7 @@
     "flatted" "^3.1.0"
     "rimraf" "^3.0.2"
 
-"flatted@^3.1.0":
+"flatted@^3.1.0", "flatted@^3.2.6":
   "integrity" "sha512-0sQoMh9s0BYsm+12Huy/rkKxVu4R1+r96YX5cG44rHV0pQ6iC3Q+mkoMFaGWObMFYQxCVT+ssG1ksneA2MI9KQ=="
   "resolved" "https://registry.npmmirror.com/flatted/-/flatted-3.2.6.tgz"
   "version" "3.2.6"
@@ -2915,6 +2920,15 @@
     "graceful-fs" "^4.2.0"
     "jsonfile" "^6.0.1"
     "universalify" "^2.0.0"
+
+"fs-extra@^8.1.0":
+  "integrity" "sha512-yhlQgA6mnOJUKOsRUFsgJdQCvkKhcz8tlZG5HBQfReYZy46OwLcY+Zia0mtdHsOo9y/hP+CxMN0TU9QxoOtG4g=="
+  "resolved" "https://registry.npmmirror.com/fs-extra/-/fs-extra-8.1.0.tgz"
+  "version" "8.1.0"
+  dependencies:
+    "graceful-fs" "^4.2.0"
+    "jsonfile" "^4.0.0"
+    "universalify" "^0.1.0"
 
 "fs-monkey@^1.0.3":
   "integrity" "sha512-cybjIfiiE+pTWicSCLFHSrXZ6EilF30oh91FDP9S2B051prEa7QWfrVTQm10/dDpswBDXZugPa1Ogu8Yh+HV0Q=="
@@ -3879,6 +3893,13 @@
   "resolved" "https://registry.npmmirror.com/jsonc-parser/-/jsonc-parser-3.0.0.tgz"
   "version" "3.0.0"
 
+"jsonfile@^4.0.0":
+  "integrity" "sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg=="
+  "resolved" "https://registry.npmmirror.com/jsonfile/-/jsonfile-4.0.0.tgz"
+  "version" "4.0.0"
+  optionalDependencies:
+    "graceful-fs" "^4.1.6"
+
 "jsonfile@^6.0.1":
   "integrity" "sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ=="
   "resolved" "https://registry.npmmirror.com/jsonfile/-/jsonfile-6.1.0.tgz"
@@ -3972,6 +3993,17 @@
   dependencies:
     "chalk" "^4.1.0"
     "is-unicode-supported" "^0.1.0"
+
+"log4js@^6.6.1":
+  "integrity" "sha512-J8VYFH2UQq/xucdNu71io4Fo+purYYudyErgBbswWKO0MC6QVOERRomt5su/z6d3RJSmLyTGmXl3Q/XjKCf+/A=="
+  "resolved" "https://registry.npmmirror.com/log4js/-/log4js-6.6.1.tgz"
+  "version" "6.6.1"
+  dependencies:
+    "date-format" "^4.0.13"
+    "debug" "^4.3.4"
+    "flatted" "^3.2.6"
+    "rfdc" "^1.3.0"
+    "streamroller" "^3.1.2"
 
 "logform@^2.3.2", "logform@^2.4.0":
   "integrity" "sha512-W4c9himeAwXEdZ05dQNerhFz2XG80P9Oj0loPUMV23VC2it0orMHQhJm4hdnnor3rd1HsGf6a2lPwBM1zeXHGw=="
@@ -4817,6 +4849,11 @@
   "resolved" "https://registry.npmmirror.com/reusify/-/reusify-1.0.4.tgz"
   "version" "1.0.4"
 
+"rfdc@^1.3.0":
+  "integrity" "sha512-V2hovdzFbOi77/WajaSMXk2OLm+xNIeQdMMuB7icj7bk6zi2F8GGAxigcnDFpJHbNyNcgyJDiP+8nOrY5cZGrA=="
+  "resolved" "https://registry.npmmirror.com/rfdc/-/rfdc-1.3.0.tgz"
+  "version" "1.3.0"
+
 "rimraf@^3.0.0", "rimraf@^3.0.2", "rimraf@3.0.2":
   "integrity" "sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA=="
   "resolved" "https://registry.npmmirror.com/rimraf/-/rimraf-3.0.2.tgz"
@@ -5120,6 +5157,15 @@
   "integrity" "sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ=="
   "resolved" "https://registry.npmmirror.com/statuses/-/statuses-2.0.1.tgz"
   "version" "2.0.1"
+
+"streamroller@^3.1.2":
+  "integrity" "sha512-wZswqzbgGGsXYIrBYhOE0yP+nQ6XRk7xDcYwuQAGTYXdyAUmvgVFE0YU1g5pvQT0m7GBaQfYcSnlHbapuK0H0A=="
+  "resolved" "https://registry.npmmirror.com/streamroller/-/streamroller-3.1.2.tgz"
+  "version" "3.1.2"
+  dependencies:
+    "date-format" "^4.0.13"
+    "debug" "^4.3.4"
+    "fs-extra" "^8.1.0"
 
 "streamsearch@^1.1.0":
   "integrity" "sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg=="
@@ -5575,6 +5621,11 @@
   "integrity" "sha512-3KLq3pXMS0Y4IELV045fTxqz04Nk9Ms7yfBBHum3yxsTR4XNn+ZCaUbf/mWitgYDAhsplQ0B1G4S5D345lMO3A=="
   "resolved" "https://registry.npmmirror.com/undici/-/undici-5.8.2.tgz"
   "version" "5.8.2"
+
+"universalify@^0.1.0":
+  "integrity" "sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg=="
+  "resolved" "https://registry.npmmirror.com/universalify/-/universalify-0.1.2.tgz"
+  "version" "0.1.2"
 
 "universalify@^2.0.0":
   "integrity" "sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ=="

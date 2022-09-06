@@ -10,6 +10,7 @@ var {
 var { dotenv } = require("dotenv").config();
 var { updateCommands } = require("./bot-deploy-commands.ts");
 var wait = require("node:timers/promises").setTimeout;
+const { logger } = require("./log/logconfig");
 
 // creating commands
 updateCommands();
@@ -39,6 +40,8 @@ const eventFiles = fs
 for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
 	const event = require(filePath);
+
+	logger.info("log test!!!!");
 
 	if (event.once) {
 		client.once(event.name, async (...args) => event.execute(...args));
