@@ -3,20 +3,36 @@ var fs = require("node:fs");
 var path = require("node:path");
 var {
 	Client,
+	Guild,
 	Collection,
 	GatewayIntentBits,
 	InteractionType,
+	GuildMemberManager,
 } = require("discord.js");
+
 var { dotenv } = require("dotenv").config();
 var { updateCommands } = require("./bot-deploy-commands.ts");
+var { ddbbConfig } = require("./database/config.ts");
 var wait = require("node:timers/promises").setTimeout;
 const { logger } = require("./log/logconfig");
+
+logger.info("log test!!!!");
+
+// set up ddbb
+ddbbConfig();
 
 // creating commands
 updateCommands();
 
 // Create a new client instance
-export const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+export const client = new Client({
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent,
+		GatewayIntentBits.GuildMembers,
+	],
+});
 
 client.commands = new Collection();
 var commandsPath = path.join(__dirname, "commands");
@@ -37,11 +53,23 @@ const eventFiles = fs
 	.readdirSync(eventsPath)
 	.filter((file) => file.endsWith(".ts"));
 
+//--------------------------------------------------------------------------
+// get server users!!!
+console.log("menbers!:::\n");
+// Get the Guild and store it under the variable "list"
+console.log(client);
+
+const guild = client.guilds.cache.find("867849049583255553");
+if (!guild) {
+	console.log(`Can't find any guild with the ID "${867849049583255553}"`);
+}
+// Fetch all members from a guild
+guild.members.fetch().then(console.log).catch(console.error);
+//--------------------------------------------------------------------------
+
 for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
 	const event = require(filePath);
-
-	logger.info("log test!!!!");
 
 	if (event.once) {
 		client.once(event.name, async (...args) => event.execute(...args));
