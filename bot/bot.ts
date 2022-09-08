@@ -1,3 +1,5 @@
+import { VoiceState } from "discord.js";
+
 // Require the necessary discord.js classes
 var fs = require("node:fs");
 var path = require("node:path");
@@ -8,6 +10,7 @@ var {
 	GatewayIntentBits,
 	InteractionType,
 	GuildMemberManager,
+	Intents,
 } = require("discord.js");
 
 var { dotenv } = require("dotenv").config();
@@ -26,13 +29,22 @@ updateCommands();
 
 // Create a new client instance
 export const client = new Client({
-	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.MessageContent,
-		GatewayIntentBits.GuildMembers,
-	],
+	intents: [7796],
 });
+
+client.on(
+	"VoiceStateUpdate",
+	async (oldState: VoiceState, newState: VoiceState) => {
+		logger.info("new userr up !");
+		const membernew = oldState.member;
+		console.log("new userr up !");
+		console.log(oldState);
+		console.log(newState);
+		console.log(`Readdasy! Logged in as ${membernew}`);
+		const member = newState.member;
+		console.log(`Ready! Logged in as ${member}`);
+	}
+);
 
 client.commands = new Collection();
 var commandsPath = path.join(__dirname, "commands");
@@ -53,20 +65,6 @@ const eventFiles = fs
 	.readdirSync(eventsPath)
 	.filter((file) => file.endsWith(".ts"));
 
-//--------------------------------------------------------------------------
-// get server users!!!
-console.log("menbers!:::\n");
-// Get the Guild and store it under the variable "list"
-console.log(client);
-
-const guild = client.guilds.cache.find("867849049583255553");
-if (!guild) {
-	console.log(`Can't find any guild with the ID "${867849049583255553}"`);
-}
-// Fetch all members from a guild
-guild.members.fetch().then(console.log).catch(console.error);
-//--------------------------------------------------------------------------
-
 for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
 	const event = require(filePath);
@@ -79,6 +77,19 @@ for (const file of eventFiles) {
 
 	if (event.name === "interactionCreate") {
 		client.on(event.name, async (interaction) => {
+			// const guild = interaction.guild;
+			// guild.members
+			// 	.fetch({ withPresences: true })
+			// 	.then((fetchedMembers) => {
+			// 		const totalOnline = fetchedMembers.filter(
+			// 			(member) => member.presence?.status === "online"
+			// 		);
+			// 		// Now you have a collection with all online member objects in the totalOnline variable
+			// 		console.log(
+			// 			`There are currently ${totalOnline.size} members online in this guild!`
+			// 		);
+			// 	});
+
 			if (!interaction.isChatInputCommand()) return;
 
 			// if (interaction.commandName === "ping") { // message: 'Interaction has already been acknowledged.',
